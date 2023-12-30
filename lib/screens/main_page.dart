@@ -23,7 +23,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    //jsontest();
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -37,23 +36,45 @@ class _MainPageState extends State<MainPage> {
                 else{
                   final data = snapshot.data!;
 
-                  return Expanded(
-                    child:GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(data['fgi']['now']['value'].toString()),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ...List.generate(
+                            3, (index) => Container(
+                              padding: EdgeInsets.all(3.0),
+                              width: MediaQuery.of(context).size.width*0.32,
+                              child: CupertinoButton(
+                                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                color: CupertinoColors.activeBlue,
+                                onPressed: (){},
+                                child: Text(data['fgi'].keys.elementAt(index).toString()), 
+                              ),
+                            )
+                          ),
+                        ]
                       ),
-                      itemCount: data['fgi'].length,
-                      itemBuilder: (context, index) {
-                        final buttontext = data['fgi'].keys.elementAt(index);
-                        return CupertinoButton(
-                          color: CupertinoColors.activeBlue,
-                          onPressed: (){},
-                          child: Text(buttontext.toString()), 
-                        );
-                      },
-                    ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ...List.generate(
+                            2, (index) => Container(
+                              padding: EdgeInsets.all(3.0),
+                              width: MediaQuery.of(context).size.width*0.48,
+                              child: CupertinoButton(
+                                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                color: CupertinoColors.activeBlue,
+                                onPressed: (){},
+                                child: Text(data['fgi'].keys.elementAt(index+3).toString()), 
+                              ),
+                            )
+                          ),
+                        ]
+                      ),
+                    ]
                   );
                 }
               },
