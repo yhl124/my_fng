@@ -17,6 +17,7 @@ class _MainPageState extends State<MainPage> {
 
   int fngIndex = 0;
   late int _currentIndex;
+  late String _currentState;
 
   @override
   void initState() {
@@ -30,6 +31,7 @@ class _MainPageState extends State<MainPage> {
 
     Map<String, dynamic> response = await _responsejson;
     setState(() {
+      _currentState = response['fgi']['now']['valueText'];
       _currentIndex = response['fgi']['now']['value'];
     });
   }
@@ -49,13 +51,17 @@ class _MainPageState extends State<MainPage> {
                 }
                 else if (snapshot.hasData){
                   final data = snapshot.data!;
-                  //_currentIndex = data['fgi']['now']['value'];
 
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Text(_currentState),
                       Gauge(firstfgi: _currentIndex),
-                      SizedBox(height: 20,),
+                      Container(
+                        alignment: Alignment.center,
+                        height: 40,
+                        child: Text(_currentIndex.toString()))
+                      ,
                       //Text(data['fgi']['now']['value'].toString()),
                       Row(
                         mainAxisSize: MainAxisSize.min,
@@ -69,6 +75,7 @@ class _MainPageState extends State<MainPage> {
                                 color: Pallete.colorMap[data['fgi'].values.elementAt(index)['valueText']],
                                 onPressed: (){
                                   setState(() {
+                                    _currentState = data['fgi'].values.elementAt(index)['valueText'];
                                     _currentIndex = data['fgi'].values.elementAt(index)['value'];
                                   });
                                 },
@@ -90,6 +97,7 @@ class _MainPageState extends State<MainPage> {
                                 color: Pallete.colorMap[data['fgi'].values.elementAt(index+3)['valueText']],
                                 onPressed: (){
                                   setState(() {
+                                    _currentState = data['fgi'].values.elementAt(index+3)['valueText'];
                                     _currentIndex = data['fgi'].values.elementAt(index+3)['value'];
                                   });
                                 },

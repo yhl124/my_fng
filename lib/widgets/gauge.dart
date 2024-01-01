@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_fng/widgets/needle.dart';
 
 class Gauge extends StatefulWidget{
   //인덱스 초기값
-  int firstfgi = 0;
+  final int firstfgi;
 
   Gauge({Key? key, required this.firstfgi})
     :super(key: key);
@@ -17,26 +18,40 @@ class _GaugeState extends State<Gauge> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+
     _controller = AnimationController(
       duration: Duration(seconds: 2),
       vsync: this,
-    );
+    )..repeat();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width*0.95,
-      height: MediaQuery.of(context).size.width*0.5,
-      child: RotationTransition(
-        turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
-        child: Container(
-          width: 100.0,
-          height: 100.0,
-          color: Colors.blue,
-          child: Text(widget.firstfgi.toString()),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width*0.95,
+          height: MediaQuery.of(context).size.width*0.95*0.4,
+          //color: Colors.green,
+          child: Transform.rotate(
+            angle: (widget.firstfgi*1.8-90) * (3.14159 / 180.0),//Tween(begin: 0.25, end: 0.75).animate(_controller),
+            alignment: Alignment.bottomCenter,
+            /*
+            child: Container(
+              width: MediaQuery.of(context).size.width*0.1,
+              height: MediaQuery.of(context).size.width*0.1,
+              color: Colors.blue,
+              child: Text(widget.firstfgi.toString(), textAlign: TextAlign.center,),
+            ),
+            */
+            child: CustomPaint(
+              painter: GaugeNeedle(),
+            ),
+            
+          ),
         ),
-      ),
+      ],
     );
   }
 
