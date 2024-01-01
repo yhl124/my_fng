@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class Gauge extends StatefulWidget{
   //인덱스 초기값
-  final int? firstfgi;
+  int firstfgi = 0;
 
-  const Gauge({Key? key, this.firstfgi})
+  Gauge({Key? key, required this.firstfgi})
     :super(key: key);
 
   @override

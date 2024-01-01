@@ -16,12 +16,22 @@ class _MainPageState extends State<MainPage> {
   late Future<Map<String,dynamic>> _responsejson;
 
   int fngIndex = 0;
-  int? _currentIndex;
+  late int _currentIndex;
 
   @override
   void initState() {
     super.initState();
+    //_responsejson = getFngIndex();
+    _initData();
+  }
+
+  Future<void> _initData() async {
     _responsejson = getFngIndex();
+
+    Map<String, dynamic> response = await _responsejson;
+    setState(() {
+      _currentIndex = response['fgi']['now']['value'];
+    });
   }
 
   @override
@@ -39,13 +49,14 @@ class _MainPageState extends State<MainPage> {
                 }
                 else if (snapshot.hasData){
                   final data = snapshot.data!;
-                  _currentIndex = data['fgi']['now']['value'];
+                  //_currentIndex = data['fgi']['now']['value'];
 
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Gauge(firstfgi: _currentIndex),
-                      Text(data['fgi']['now']['value'].toString()),
+                      SizedBox(height: 20,),
+                      //Text(data['fgi']['now']['value'].toString()),
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -58,7 +69,7 @@ class _MainPageState extends State<MainPage> {
                                 color: Pallete.colorMap[data['fgi'].values.elementAt(index)['valueText']],
                                 onPressed: (){
                                   setState(() {
-                                    _currentIndex = 1;
+                                    _currentIndex = data['fgi'].values.elementAt(index)['value'];
                                   });
                                 },
                                 child: Text(data['fgi'].keys.elementAt(index).toString(), style: TextStyle(color: Colors.black),), 
@@ -77,7 +88,11 @@ class _MainPageState extends State<MainPage> {
                               child: CupertinoButton(
                                 padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                                 color: Pallete.colorMap[data['fgi'].values.elementAt(index+3)['valueText']],
-                                onPressed: (){},
+                                onPressed: (){
+                                  setState(() {
+                                    _currentIndex = data['fgi'].values.elementAt(index+3)['value'];
+                                  });
+                                },
                                 child: Text(data['fgi'].keys.elementAt(index+3).toString(), style: TextStyle(color: Colors.black),), 
                               ),
                             )
@@ -108,10 +123,12 @@ class _MainPageState extends State<MainPage> {
   }
 
   Future<void> _refreshData() async {
+    Map<String, dynamic> response = await _responsejson;
     setState(() {
       _responsejson = getFngIndex();
-      //getFngIndex();
+      _currentIndex = response['fgi']['now']['value'];
     });
+      //getFngIndex();
   }
 
   Future<Map<String, dynamic>> getFngIndex() async {
