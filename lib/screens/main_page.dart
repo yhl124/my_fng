@@ -16,6 +16,7 @@ class _MainPageState extends State<MainPage> {
   late Future<Map<String,dynamic>> _responsejson;
 
   int fngIndex = 0;
+  int _beforeIndex = 0;
   late int _currentIndex;
   late String _currentState;
 
@@ -56,7 +57,7 @@ class _MainPageState extends State<MainPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(_currentState),
-                      Gauge(firstfgi: _currentIndex),
+                      Gauge(firstfgi: _beforeIndex, secondfgi: _currentIndex,),
                       Container(
                         alignment: Alignment.center,
                         height: 40,
@@ -76,6 +77,7 @@ class _MainPageState extends State<MainPage> {
                                 onPressed: (){
                                   setState(() {
                                     _currentState = data['fgi'].values.elementAt(index)['valueText'];
+                                    _beforeIndex = _currentIndex;
                                     _currentIndex = data['fgi'].values.elementAt(index)['value'];
                                   });
                                 },
@@ -98,6 +100,7 @@ class _MainPageState extends State<MainPage> {
                                 onPressed: (){
                                   setState(() {
                                     _currentState = data['fgi'].values.elementAt(index+3)['valueText'];
+                                    _beforeIndex = _currentIndex;
                                     _currentIndex = data['fgi'].values.elementAt(index+3)['value'];
                                   });
                                 },
@@ -134,6 +137,7 @@ class _MainPageState extends State<MainPage> {
     Map<String, dynamic> response = await _responsejson;
     setState(() {
       _responsejson = getFngIndex();
+      _beforeIndex = _currentIndex;
       _currentIndex = response['fgi']['now']['value'];
     });
       //getFngIndex();
