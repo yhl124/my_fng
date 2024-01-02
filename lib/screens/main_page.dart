@@ -144,7 +144,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   Future<Map<String, dynamic>> getFngIndex() async {
-    /*
+    
     final response = await http.get(Uri.parse(FnbApi().url), headers: FnbApi().headers());
 
     if(response.statusCode == 200){
@@ -155,11 +155,11 @@ class _MainPageState extends State<MainPage> {
       //print('fail : ${response.statusCode}');
       throw Exception('fail : ${response.statusCode}');
     }
-    */
+    /*
     await Future.delayed(Duration(seconds: 2));
     //print(jsonDecode(FnbApi().sampleresponse)['fgi'].values.elementAt(1)['valueText']);
     return jsonDecode(FnbApi().sampleresponse);
-    
+    */
   }
 
 }
