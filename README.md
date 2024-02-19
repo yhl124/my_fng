@@ -8,11 +8,12 @@
   ![cnnfnb](./readme/cnnfnb.png)
    - 각 시점을 버튼으로 만들어 버튼을 누를 때마다 애니메이션이 적용된 바늘이 부드럽게 움직이게 함
 
-1. 애니메이션
+2. 애니메이션
    - Tween을 사용하여 현재값 -> 새로운 값에 따라 바뀌게 함
    - Curves.easeInOut를 사용
 
-2. api : Rapid API에서 제공하는 api사용
+3. api : Rapid API에서 제공하는 api사용
         https://rapidapi.com/rpi4gx/api/fear-and-greed-index
 
-<video controls src="./readme/iPhone_15_Pro_fnb.mp4" title="my_fnb"></video>
+
+![myfnb](./readme/my_fnb.gif)
