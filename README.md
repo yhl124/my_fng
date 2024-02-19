@@ -1,16 +1,18 @@
 # my_fng
+플러터를 사용해 Fear and greed index를 확인하는 앱 제작
 
-A new Flutter project.
+## 설명
 
-## Getting Started
+1. 구성 
+   - https://edition.cnn.com/markets/fear-and-greed에서 제공하는 것처럼 지수가 0일 때 바늘이 -90도, 100일 때 90도를 가리키게 함
+  ![alt text](<readme/스크린샷 2024-02-20 오전 2.10.39.png>)
+   - 각 시점을 버튼으로 만들어 버튼을 누를 때마다 애니메이션이 적용된 바늘이 부드럽게 움직이게 함
 
-This project is a starting point for a Flutter application.
+2. 애니메이션
+   - Tween을 사용하여 현재값 -> 새로운 값에 따라 바뀌게 함
+   - Curves.easeInOut를 사용
 
-A few resources to get you started if this is your first Flutter project:
+3. api : Rapid API에서 제공하는 api사용
+        https://rapidapi.com/rpi4gx/api/fear-and-greed-index
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<video controls src="readme/Simulator Screen Recording - iPhone 15 Pro - 2024-02-20 at 02.24.13.mp4" title="Title"></video>
