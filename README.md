@@ -15,5 +15,5 @@
 3. api : Rapid API에서 제공하는 api사용
         https://rapidapi.com/rpi4gx/api/fear-and-greed-index
 
-
-![myfnb](./readme/my_fnb.gif){: width="50%" height="50%"}
+4. 실행 결과</br>
+   ![myfnb](./readme/my_fnb2.gif)</br>
