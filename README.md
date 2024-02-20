@@ -16,4 +16,4 @@
         https://rapidapi.com/rpi4gx/api/fear-and-greed-index
 
 
-![myfnb](./readme/my_fnb.gif)
+![myfnb](./readme/my_fnb.gif){: width="50%" height="50%"}
